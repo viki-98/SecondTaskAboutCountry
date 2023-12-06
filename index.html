@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+    />
+    <title>Document</title>
+</head>
+<body>
+<div class="container">
+    <div class="search-form">
+        <label  class="form-label">Enter your country:</label>
+        <div class="input-wrapper">
+            <input type="text" id="searchInput" class="form-control" />
+            <div class="country-helper" id="country-helper"></div>
+        </div>
+        <button id="searchDataBtn" class="search-form-button">Search</button>
+        <button
+                id="fetchDataBtn"
+                class="search-form-button search-form-button__loading"
+        >
+            Load all countries
+        </button>
+    </div>
+
+    <section id="countriesInfo"></section>
+    <section id="countriesTable">
+        <table class="table">
+            <thead id="table_head"></thead>
+            <tbody id="table_body"></tbody>
+        </table>
+    </section>
+    <h2 class="paragraph" id="paragraph">General information</h2>
+    <section id="regionTable">
+        <table class="table">
+            <thead id="table-head_region"></thead>
+            <tbody id="table-body_region"></tbody>
+        </table>
+    </section>
+
+
+</div>
+<div class="custom-loader-wrapper" id="loader">
+    <div class="custom-loader"></div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>
