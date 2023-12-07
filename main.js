@@ -51,6 +51,7 @@ async function getAllCountries() {
         getCountryAndPopulation(data);
         getRegion(data);
         // populateCountryForHelper(data);
+        populateMoneyStatistics(data);
     } catch (error) {
         console.log(error);
     }
@@ -64,6 +65,7 @@ async function getCountryDetails() {
         totalCountriesInfo(data);
         getCountryAndPopulation(data);
         getRegion(data);
+        populateMoneyStatistics(data);
     } catch (error) {
         console.log(error);
     }
@@ -239,3 +241,58 @@ function toggleCountryHelper(isCountryHelperShown) {
     }
 }
 
+
+//Function displaying country helper based on flag @isCountryHelperShown
+function toggleCountryHelper(isCountryHelperShown) {
+    if (isCountryHelperShown) {
+        countryHelper.classList.add('show-country-helper');
+    } else {
+        countryHelper.classList.remove('show-country-helper');
+    }
+}
+
+//Function creating money statistics table.
+function populateMoneyStatistics(data) {
+    let moneyPopulationCount = {};
+    for (const country of data) {
+        if (country.currencies !== null && country.currencies !== undefined) {
+            const arr = Object.keys(country.currencies);
+            // console.log(arr[0]);
+
+            if (!moneyPopulationCount[arr[0]]) {
+                moneyPopulationCount[arr[0]] = 0;
+            }
+            moneyPopulationCount[arr[0]]++;
+        }
+    }
+    const moneyStatistic = showPopulateMoneyStatistics(moneyPopulationCount);
+    // console.log(moneyStatistic);
+
+    let moneyStatiscticTableStructure = `
+      <tr>
+          <th class="table-cell">Money</th>
+          <th class="table-cell">Using in countries</th>
+      </tr>
+      `;
+
+    const tableHeader = document.getElementById('table-head_money');
+    const tableBody = document.getElementById('table-body_money');
+
+    tableHeader.innerHTML = moneyStatiscticTableStructure;
+    tableBody.innerHTML = moneyStatistic;
+}
+
+//Function creating entries for money statistics table.
+function showPopulateMoneyStatistics(data) {
+    let moneyStatistics = '';
+    for (const region in data) {
+        moneyStatistics += `
+          <tr>
+              <td class="table-cell">${region}</td>
+              <td class="table-cell">${data[region]}</td>
+          </tr>
+
+      `;
+    }
+    return moneyStatistics;
+}
