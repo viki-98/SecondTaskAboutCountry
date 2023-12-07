@@ -157,7 +157,9 @@ function toogleLoader(isLoaderShown) {
 //Function adding paragraph for additional tables.
 function showParagraph() {
     const infoParagraph = document.getElementById('paragraph');
+    const moneyParagraph = document.getElementById('money-paragraph');
     infoParagraph.classList.add('show-paragraph');
+    moneyParagraph.classList.add('show-paragraph');
 }
 
 //Function preparing data for country helper.
